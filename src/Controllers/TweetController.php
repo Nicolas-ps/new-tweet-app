@@ -10,12 +10,12 @@ class TweetController
     public function new (): void
     {
         $twitter = new Twitter();
-        $user = $twitter->getMe();
+        $response = $twitter->getMe();
 
-        if (isset($user['error'])) {
+        if (isset($response['error'])) {
             response([
                 'error' => true,
-                'message' => 'Ocorreu um erro ao tentar realizar um tweet!',
+                'message' => $response['message'],
             ], HTTPResponseCodes::ServerError);
         }
 
@@ -27,7 +27,7 @@ class TweetController
 
         response([
             'error' => true,
-            'message' => 'Ocorreu um erro ao tentar realizar um tweet!',
+            'message' => $newPost['message'],
         ], HTTPResponseCodes::ServerError);
     }
 }

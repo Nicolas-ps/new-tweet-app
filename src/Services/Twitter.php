@@ -8,7 +8,7 @@ class Twitter
 
     private string $apiVersion = '2';
 
-    private $httpClient;
+    private OAuthClient $httpClient;
 
     public function __construct()
     {
@@ -29,12 +29,10 @@ class Twitter
                 'GET'
             ), true);
 
-            dump($response);
-
             if (! isset($response['data']['id'])) {
                 return [
                     'error' => true,
-                    'ocorreu um erro ao tentar capturar os metadados do usuário!'
+                    'message' => 'ocorreu um erro ao tentar capturar os metadados do usuário!'
                 ];
             }
 
@@ -43,10 +41,9 @@ class Twitter
                 'data' => $response['data']
             ];
         } catch (\Throwable $exception) {
-            dump($exception);
             return [
                 'error' => true,
-                'ocorreu um erro ao tentar capturar os metadados do usuário!'
+                'message' => $exception->getMessage()
             ];
         }
     }
@@ -62,8 +59,6 @@ class Twitter
                 $body,
             ), true);
 
-            dump($response);
-
             if (! isset($response['data']['id'])) {
                  return [
                     'error' => true,
@@ -76,11 +71,10 @@ class Twitter
                 'data' => json_decode($response)
             ];
         } catch (\Throwable $exception) {
-            dump($exception);
 
             return [
                 'error' => true,
-                'message' => 'ocorreu um erro ao tentar realizar um tweet!'
+                'message' => $exception->getMessage()
             ];
         }
     }
