@@ -21,8 +21,6 @@ class TweetController
 
         $newPost = $twitter->tweet('Tuitando via PHP e OAuth API!');
 
-        dd($newPost);
-
         if (isset($newPost['success'])) {
             response($newPost, HTTPResponseCodes::Ok);
         }
