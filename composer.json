@@ -1,0 +1,20 @@
+{
+    "name": "nicolasfoco/api-twitter",
+    "autoload": {
+        "psr-4": {
+            "Nicolasfoco\\ApiTwitter\\": "src/"
+        },
+        "files": [
+            "src/Utils/utils.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "nicolas237",
+            "email": "nicolas@focomultimidia.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^5.4"
+    }
+}
